@@ -41,11 +41,14 @@ export default {
 <style>
 .header {
   grid-area: header;
-  background: linear-gradient(to right, #1e469a, #49a7c1);
+  background: linear-gradient(to right, #006400, #2E8B57);
 
-  display: flex;
+  display: flex;  
   justify-content: center;
   align-items: center;
+
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.8);
+  position: relative;
 }
 .title {
   font-size: 1.2rem;

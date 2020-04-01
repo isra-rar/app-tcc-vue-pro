@@ -9,6 +9,9 @@ import router from './config/router';
 
 Vue.config.productionTip = false
 
+// TEMPORARIO
+// require('axios').defaults.headers.common['Authorization'] = 'bearer tokentcc'
+
 new Vue({
   store,
   router,

@@ -12,9 +12,9 @@ export default {
 </script>
 
 <style>
-.content {
-  grid-area: content;
-  background-color: #eeffee;
-  padding: 20px;
-}
+  .content {
+    grid-area: content;
+    background-color: #ffffff;
+    padding: 20px;
+  }
 </style>
