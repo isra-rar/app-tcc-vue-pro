@@ -57,7 +57,7 @@
               id="crm-cep"
               type="text"
               v-model="crm.endereco.cep"
-              @blur="buscaCep()"
+              @blur.native="buscaCep"
               required
               placeholder="Informe o CEP"
             />
@@ -148,7 +148,12 @@ export default {
         cnpj: '',
         presidente: '',
         endereco: {
-          
+          cep: '',
+          logradouro: '',
+          bairro: '',
+          numero: '',
+          localidade: '',
+          uf: ''
         }
       },
       crms: [],
@@ -193,7 +198,7 @@ export default {
       });
     },
     reset() {
-      (this.mode = "save"), (this.crm = {}), this.loadUsers();
+      (this.mode = "save"), (this.crm = {endereco: {}}), this.loadUsers();
     },
     save() {
       const method = this.crm.id ? "put" : "post";

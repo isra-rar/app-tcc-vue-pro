@@ -1,50 +1,19 @@
 {
   "crms": [
     {
-      "razaoSocial": "Teste",
-      "nomeFantasia": "Teste",
-      "cnpj": "Teste",
-      "presidente": "Teste",
+      "razaoSocial": "Roseira, Junqueira e Aparício",
+      "nomeFantasia": "Pereira-Junqueira",
+      "cnpj": "40701510212804",
+      "presidente": "Sr. Luan Beltrão",
       "endereco": {
-        "cep": "Teste",
-        "logradouro": "Teste",
-        "bairro": "Teste",
-        "numero": "Teste",
-        "uf": "Teste",
-        "localidade": "Teste"
+        "cep": "20330-333",
+        "logradouro": "Rua Fernanda Corrêa",
+        "bairro": "Carmo",
+        "numero": "32",
+        "localidade": "Sem-Peixe",
+        "uf": "PB"
       },
       "id": 1
-    },
-    {
-      "razaoSocial": "Teste",
-      "nomeFantasia": "Teste",
-      "cnpj": "Teste",
-      "presidente": "Teste",
-      "endereco": {
-        "cep": "Teste",
-        "logradouro": "Teste",
-        "bairro": "Teste",
-        "numero": "Teste",
-        "localidade": "Teste",
-        "uf": "Teste"
-      },
-      "id": 2
-    },
-    {
-      "razaoSocial": "",
-      "nomeFantasia": "",
-      "cnpj": "",
-      "presidente": "",
-      "endereco": {},
-      "id": 3
-    },
-    {
-      "razaoSocial": "",
-      "nomeFantasia": "",
-      "cnpj": "",
-      "presidente": "",
-      "endereco": {},
-      "id": 4
     }
   ]
 }
