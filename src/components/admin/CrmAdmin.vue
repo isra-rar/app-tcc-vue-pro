@@ -56,7 +56,8 @@
             <b-form-input
               id="crm-cep"
               type="text"
-              v-model="crm.endereco"
+              v-model="crm.endereco.cep"
+              @blur="buscaCep()"
               required
               placeholder="Informe o CEP"
             />
@@ -67,7 +68,7 @@
             <b-form-input
               id="crm-logradouro"
               type="text"
-              v-model="crm.endereco"
+              v-model="crm.endereco.logradouro"
               required
               placeholder="Informe o Logradouro"
             />
@@ -80,7 +81,7 @@
             <b-form-input
               id="crm-bairro"
               type="text"
-              v-model="crm.endereco"
+              v-model="crm.endereco.bairro"
               required
               placeholder="Informe o Bairro"
             />
@@ -91,7 +92,7 @@
             <b-form-input
               id="crm-numero"
               type="text"
-              v-model="crm.endereco"
+              v-model="crm.endereco.numero"
               required
               placeholder="Informe o Numero"
             />
@@ -104,7 +105,7 @@
             <b-form-input
               id="crm-localidade"
               type="text"
-              v-model="crm.endereco"
+              v-model="crm.endereco.localidade"
               required
               placeholder="Informe o Localidade"
             />
@@ -115,7 +116,7 @@
             <b-form-input
               id="crm-uf"
               type="text"
-              v-model="crm.endereco"
+              v-model="crm.endereco.uf"
               required
               placeholder="Informe a UF"
             />
@@ -126,7 +127,7 @@
       <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
       <b-button class="ml-2" @click="reset">Cancelar</b-button>
     </b-form>
-    <hr>
+    <hr />
     <b-table hover striped :items="crms" :fields="fields"></b-table>
   </div>
 </template>
@@ -134,13 +135,22 @@
 <script>
 import { baseApiUrl, showError } from "@/global";
 import axios from "axios";
+import { getCep } from "../../services/cepApi";
 
 export default {
   name: "CrmAdmin",
   data() {
     return {
       mode: "save",
-      crm: {},
+      crm: {
+        razaoSocial: '',
+        nomeFantasia: '',
+        cnpj: '',
+        presidente: '',
+        endereco: {
+          
+        }
+      },
       crms: [],
       fields: [
         {
@@ -183,27 +193,35 @@ export default {
       });
     },
     reset() {
-      this.mode = 'save',
-      this.crm = {},
-      this.loadUsers()
+      (this.mode = "save"), (this.crm = {}), this.loadUsers();
     },
     save() {
-      const method = this.crm.id ? 'put' : 'post'
-      const id = this.crm.id ? `/${this.crm.id}` : ''
+      const method = this.crm.id ? "put" : "post";
+      const id = this.crm.id ? `/${this.crm.id}` : "";
       axios[method](`${baseApiUrl}/crms${id}`, this.crm)
         .then(() => {
-          this.$toasted.global.defaultSuccess()
-          this.reset()
+          this.$toasted.global.defaultSuccess();
+          this.reset();
         })
-        .catch(showError)
+        .catch(showError);
     },
     remove() {
-      const id = this.crm.id
-      axios.delete(`${baseApiUrl}/crms/${id}`)
-        .then(() => {
-          this.$toasted.global.defaultSuccess()
-          this.reset()
-        })
+      const id = this.crm.id;
+      axios.delete(`${baseApiUrl}/crms/${id}`).then(() => {
+        this.$toasted.global.defaultSuccess();
+        this.reset();
+      });
+    },
+    async buscaCep() {
+      const response = await getCep(this.crm.endereco.cep);
+      if (response.data.erro) {
+        return;
+      }
+      const { logradouro, bairro, localidade, uf } = response.data;
+      this.crm.endereco.logradouro = logradouro;
+      this.crm.endereco.bairro = bairro;
+      this.crm.endereco.localidade = localidade;
+      this.crm.endereco.uf = uf;
     }
   },
   mounted() {

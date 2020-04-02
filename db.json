@@ -1,0 +1,50 @@
+{
+  "crms": [
+    {
+      "razaoSocial": "Teste",
+      "nomeFantasia": "Teste",
+      "cnpj": "Teste",
+      "presidente": "Teste",
+      "endereco": {
+        "cep": "Teste",
+        "logradouro": "Teste",
+        "bairro": "Teste",
+        "numero": "Teste",
+        "uf": "Teste",
+        "localidade": "Teste"
+      },
+      "id": 1
+    },
+    {
+      "razaoSocial": "Teste",
+      "nomeFantasia": "Teste",
+      "cnpj": "Teste",
+      "presidente": "Teste",
+      "endereco": {
+        "cep": "Teste",
+        "logradouro": "Teste",
+        "bairro": "Teste",
+        "numero": "Teste",
+        "localidade": "Teste",
+        "uf": "Teste"
+      },
+      "id": 2
+    },
+    {
+      "razaoSocial": "",
+      "nomeFantasia": "",
+      "cnpj": "",
+      "presidente": "",
+      "endereco": {},
+      "id": 3
+    },
+    {
+      "razaoSocial": "",
+      "nomeFantasia": "",
+      "cnpj": "",
+      "presidente": "",
+      "endereco": {},
+      "id": 4
+    }
+  ]
+}
