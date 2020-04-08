@@ -128,7 +128,9 @@
       <b-button class="ml-2" @click="reset">Cancelar</b-button>
     </b-form>
     <hr />
-    <b-table hover striped :items="crms" :fields="fields"></b-table>
+    <div>
+      <Table :items="crms" :fields="fields" :current-page="pagina" :perPage="qtnpagina" :loadData="loadCrm"/>
+    </div>
   </div>
 </template>
 
@@ -136,24 +138,28 @@
 import { baseApiUrl, showError } from "@/global";
 import axios from "axios";
 import { getCep } from "../../services/cepApi";
+import Table from "../template/Table";
 
 export default {
   name: "CrmAdmin",
+  components: {Table},
   data() {
     return {
+      pagina: 1,
+      qtnpagina: 3,
       mode: "save",
       crm: {
-        razaoSocial: '',
-        nomeFantasia: '',
-        cnpj: '',
-        presidente: '',
+        razaoSocial: "",
+        nomeFantasia: "",
+        cnpj: "",
+        presidente: "",
         endereco: {
-          cep: '',
-          logradouro: '',
-          bairro: '',
-          numero: '',
-          localidade: '',
-          uf: ''
+          cep: "",
+          logradouro: "",
+          bairro: "",
+          numero: "",
+          localidade: "",
+          uf: ""
         }
       },
       crms: [],
@@ -198,7 +204,7 @@ export default {
       });
     },
     reset() {
-      (this.mode = "save"), (this.crm = {endereco: {}}), this.loadUsers();
+      (this.mode = "save"), (this.crm = { endereco: {} }), this.loadUsers();
     },
     save() {
       const method = this.crm.id ? "put" : "post";
@@ -227,6 +233,13 @@ export default {
       this.crm.endereco.bairro = bairro;
       this.crm.endereco.localidade = localidade;
       this.crm.endereco.uf = uf;
+    },
+    linkGen(pageNum) {
+      return pageNum === 1 ? "?" : `?page=${pageNum}`;
+    },
+    loadCrm(crm, mode = 'save') {
+      this.mode = mode
+      this.crm = { ...crm } 
     }
   },
   mounted() {

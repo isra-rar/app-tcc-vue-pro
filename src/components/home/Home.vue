@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <PageTitle icon="fa fa-home" main="Dashboard" sub="Base de conhecimento" />
+    <PageTitle icon="fa fa-home" main="Dashboard" sub="Receita Segura" />
     <div class="stats">
       <Stat title="Numero de receitas emitidas por tipo" :value="stat.receitas" icon="fa fa-file" color="#3bc480" />
       <Stat title="Atestados emitidos" :value="stat.atetadosEmitidos" icon="fa fa-file" color="#3bc480" />

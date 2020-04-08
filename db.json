@@ -1,19 +1,109 @@
 {
   "crms": [
     {
-      "razaoSocial": "Roseira, Junqueira e Aparício",
-      "nomeFantasia": "Pereira-Junqueira",
-      "cnpj": "40701510212804",
-      "presidente": "Sr. Luan Beltrão",
+      "razaoSocial": "CRM AM",
+      "nomeFantasia": "CONSELHO REGIONAL DE MEDICINA DA AMAZONAS",
+      "cnpj": "19829304000194",
+      "presidente": "João Medeiros",
       "endereco": {
-        "cep": "20330-333",
-        "logradouro": "Rua Fernanda Corrêa",
-        "bairro": "Carmo",
-        "numero": "32",
-        "localidade": "Sem-Peixe",
+        "cep": "58052140",
+        "logradouro": "Rua Pastor Rodolfo Beuttemuller",
+        "bairro": "Jardim Cidade Universitária",
+        "numero": "420",
+        "localidade": "João Pessoa",
         "uf": "PB"
       },
-      "id": 1
+      "id": 5
+    },
+    {
+      "razaoSocial": "CRM MG",
+      "nomeFantasia": "CONSELHO REGIONAL DE MEDICINA DO MATO GROSSO",
+      "cnpj": "19829304000194",
+      "presidente": "João Medeiros",
+      "endereco": {
+        "cep": "58052140",
+        "logradouro": "Rua Pastor Rodolfo Beuttemuller",
+        "bairro": "Jardim Cidade Universitária",
+        "numero": "420",
+        "localidade": "João Pessoa",
+        "uf": "PB"
+      },
+      "id": 6
+    },
+    {
+      "razaoSocial": "CRM SP",
+      "nomeFantasia": "CONSELHO REGIONAL DE MEDICINA DE SÃO PAULO",
+      "cnpj": "19829304000194",
+      "presidente": "João Medeiros",
+      "endereco": {
+        "cep": "58052140",
+        "logradouro": "Rua Pastor Rodolfo Beuttemuller",
+        "bairro": "Jardim Cidade Universitária",
+        "numero": "420",
+        "localidade": "João Pessoa",
+        "uf": "PB"
+      },
+      "id": 7
+    },
+    {
+      "razaoSocial": "CRM RJ",
+      "nomeFantasia": "CONSELHO REGIONAL DE MEDICINA DO RIO DE JANEIRO",
+      "cnpj": "19829304000194",
+      "presidente": "João Medeiros",
+      "endereco": {
+        "cep": "58052140",
+        "logradouro": "Rua Pastor Rodolfo Beuttemuller",
+        "bairro": "Jardim Cidade Universitária",
+        "numero": "420",
+        "localidade": "João Pessoa",
+        "uf": "PB"
+      },
+      "id": 8
+    },
+    {
+      "razaoSocial": "CRM AL",
+      "nomeFantasia": "CONSELHO REGIONAL DE MEDICINA DE ALAGOAS",
+      "cnpj": "19829304000194",
+      "presidente": "João Medeiros",
+      "endereco": {
+        "cep": "58052140",
+        "logradouro": "Rua Pastor Rodolfo Beuttemuller",
+        "bairro": "Jardim Cidade Universitária",
+        "numero": "420",
+        "localidade": "João Pessoa",
+        "uf": "PB"
+      },
+      "id": 9
+    },
+    {
+      "razaoSocial": "CRM GO",
+      "nomeFantasia": "CONSELHO REGIONAL DE MEDICINA DE GOIAS ",
+      "cnpj": "19829304000194",
+      "presidente": "João Medeiros",
+      "endereco": {
+        "cep": "58052140",
+        "logradouro": "Rua Pastor Rodolfo Beuttemuller",
+        "bairro": "Jardim Cidade Universitária",
+        "numero": "420",
+        "localidade": "João Pessoa",
+        "uf": "PB"
+      },
+      "id": 10
+    },
+    {
+      "razaoSocial": "CRM PE",
+      "nomeFantasia": "CONSELHO REGIONAL DE MEDICINA DE PERNAMBUCO",
+      "cnpj": "19829304000194",
+      "presidente": "João Medeiros",
+      "endereco": {
+        "cep": "58052140",
+        "logradouro": "Rua Pastor Rodolfo Beuttemuller",
+        "bairro": "Jardim Cidade Universitária",
+        "numero": "420",
+        "localidade": "João Pessoa",
+        "uf": "PB"
+      },
+      "id": 11
     }
   ]
 }

@@ -7,8 +7,8 @@
           <b-tab title="Artigos" active>
             <ArticleAdmin />
           </b-tab>
-          <b-tab title="Categorias">
-            <CategoryAdmin />
+          <b-tab title="Fiscalizador">
+            <FiscalizadorAdmin />
           </b-tab>
           <b-tab title="CRMS">
             <CrmAdmin />
@@ -22,7 +22,7 @@
 <script>
 import PageTitle from "../template/PageTitle.vue";
 import ArticleAdmin from "./ArticleAdmin.vue";
-import CategoryAdmin from "./CategoryAdmin.vue";
+import FiscalizadorAdmin from "./FiscalizadorAdmin.vue";
 import CrmAdmin from "./CrmAdmin.vue";
 
 export default {
@@ -30,7 +30,7 @@ export default {
   components: {
     PageTitle,
     ArticleAdmin,
-    CategoryAdmin,
+    FiscalizadorAdmin,
     CrmAdmin
   }
 };
