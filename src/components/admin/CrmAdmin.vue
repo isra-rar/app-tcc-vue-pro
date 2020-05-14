@@ -10,6 +10,7 @@
               type="text"
               v-model="crm.razaoSocial"
               required
+              :readonly="mode === 'remove'"
               placeholder="Informe o nome da Razão Social"
             />
           </b-form-group>
@@ -21,6 +22,7 @@
               type="text"
               v-model="crm.nomeFantasia"
               required
+              :readonly="mode === 'remove'"
               placeholder="Informe o Nome Fantasia"
             />
           </b-form-group>
@@ -34,6 +36,7 @@
               type="text"
               v-model="crm.cnpj"
               required
+              :readonly="mode === 'remove'"
               placeholder="Informe o CNPJ"
             />
           </b-form-group>
@@ -45,6 +48,7 @@
               type="text"
               v-model="crm.presidente"
               required
+              :readonly="mode === 'remove'"
               placeholder="Informe o Presidente do CRM"
             />
           </b-form-group>
@@ -59,6 +63,7 @@
               v-model="crm.endereco.cep"
               @blur.native="buscaCep"
               required
+              :readonly="mode === 'remove'"
               placeholder="Informe o CEP"
             />
           </b-form-group>
@@ -70,6 +75,7 @@
               type="text"
               v-model="crm.endereco.logradouro"
               required
+              :readonly="mode === 'remove'"
               placeholder="Informe o Logradouro"
             />
           </b-form-group>
@@ -83,6 +89,7 @@
               type="text"
               v-model="crm.endereco.bairro"
               required
+              :readonly="mode === 'remove'"
               placeholder="Informe o Bairro"
             />
           </b-form-group>
@@ -94,6 +101,7 @@
               type="text"
               v-model="crm.endereco.numero"
               required
+              :readonly="mode === 'remove'"
               placeholder="Informe o Numero"
             />
           </b-form-group>
@@ -107,6 +115,7 @@
               type="text"
               v-model="crm.endereco.localidade"
               required
+              :readonly="mode === 'remove'"
               placeholder="Informe o Localidade"
             />
           </b-form-group>
@@ -118,18 +127,29 @@
               type="text"
               v-model="crm.endereco.uf"
               required
+              :readonly="mode === 'remove'"
               placeholder="Informe a UF"
             />
           </b-form-group>
         </b-col>
       </b-row>
-      <b-button variant="success" v-if="mode === 'save'" @click="save">Salvar</b-button>
-      <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
-      <b-button class="ml-2" @click="reset">Cancelar</b-button>
+      <b-row>
+        <b-col xs="12">
+          <b-button variant="success" v-if="mode === 'save'" @click="save">Salvar</b-button>
+          <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
+          <b-button class="ml-2" @click="reset">Cancelar</b-button>
+        </b-col>
+      </b-row>
     </b-form>
     <hr />
     <div>
-      <Table :items="crms" :fields="fields" :current-page="pagina" :perPage="qtnpagina" :loadData="loadCrm"/>
+      <Table
+        :items="crms"
+        :fields="fields"
+        :current-page="pagina"
+        :perPage="qtnpagina"
+        :loadData="loadCrm"
+      />
     </div>
   </div>
 </template>
@@ -142,7 +162,7 @@ import Table from "../template/Table";
 
 export default {
   name: "CrmAdmin",
-  components: {Table},
+  components: { Table },
   data() {
     return {
       pagina: 1,
@@ -237,9 +257,9 @@ export default {
     linkGen(pageNum) {
       return pageNum === 1 ? "?" : `?page=${pageNum}`;
     },
-    loadCrm(crm, mode = 'save') {
-      this.mode = mode
-      this.crm = { ...crm } 
+    loadCrm(crm, mode = "save") {
+      this.mode = mode;
+      this.crm = { ...crm };
     }
   },
   mounted() {
