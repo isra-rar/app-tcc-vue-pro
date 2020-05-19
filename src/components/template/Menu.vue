@@ -27,5 +27,13 @@ export default {
     flex-direction: column;
     flex-wrap: wrap;
   }
+
+  .menu-filter {
+    padding: 10px 5px;
+  }
+
+  .menu-filter i {
+    padding: 5px;
+  }
  
 </style>

@@ -11,7 +11,7 @@
       <router-link to="/admin">
         <i class="fa fa-cogs"></i> Administração
       </router-link>
-      <a href="/">
+      <a href="/auth">
         <i class="fa fa-sign-out"></i> Sair
       </a>
     </div>

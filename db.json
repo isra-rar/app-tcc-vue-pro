@@ -91,9 +91,31 @@
       "id": 11
     }
   ],
-  "categories": [
+  "signup": [
     {
-      "text": "Teste1"
+      "name": "Israel Araujo Rodrigues",
+      "email": "rodg.isra@gmail.com",
+      "password": "cabeca12",
+      "confirmPassword": "cabeca12",
+      "id": 1
+    }
+  ],
+  "signin": [
+    {
+      "email": "rodg.isra@gmail.com",
+      "password": "cabeca12",
+      "id": 1
+    },
+    {
+      "email": "rodg.isra@gmail.com",
+      "password": "cabeca12",
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
     }
   ]
 }
