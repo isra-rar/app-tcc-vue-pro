@@ -5,6 +5,19 @@
       <input type="text" placeholder=" Pesquisar"
         v-model="treeFilter" class="filter-field">
     </div>
+    <hr>
+    <!-- <div class="menu-options">
+      <a href="">Medicos</a>
+      <a href="">Clinica</a>
+      <a href="">Orgao</a>
+      <a href="">Teste</a>
+    </div> -->
+    <!-- <div class="menu-dropdown">
+      <b-dropdown right split text="Split Menu">
+        <b-dropdown-item>Medicos</b-dropdown-item>
+        <b-dropdown-item>Clinica</b-dropdown-item>
+      </b-dropdown>
+    </div> -->
   </aside>
 </template>
 
@@ -35,5 +48,16 @@ export default {
   .menu-filter i {
     padding: 5px;
   }
- 
+
+
+  /* .menu-options a {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 30px;
+    color: black;
+    text-decoration: none;
+  }
+  .menu-options a:hover {
+    background: linear-gradient(to left, rgba(255,0,0,0), rgba(0, 100, 0, 1));
+  } */
 </style>
