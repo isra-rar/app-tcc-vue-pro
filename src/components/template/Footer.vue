@@ -2,7 +2,7 @@
   <footer class="footer">
     <span>
       Copyright
-      <strong>TCC</strong> © 2020-2020
+      <strong>Receita Segura</strong> © 2020-2020
     </span>
   </footer>
 </template>

@@ -28,12 +28,15 @@ export default {
     return {
       items: [
         {text: 'Medicos', children: [
-          {text: 'Cadastro'},
+          {text: 'Listar'},
         ]},{text: 'Instituição', children: [
-          {text: "Cadastro"}
+          {text: "Listar"}
         ]},
         {text: 'Atestado', children: [
           {text: 'Gerar'}
+        ]},
+        {text: 'Usuarios', children: [
+          {text: 'Listar'}
         ]}
       ]
     }
@@ -64,6 +67,8 @@ export default {
       cursor: pointer;
       text-decoration: none;
       color: #343434;
+      font-size: 1.1rem;
+      padding: 10px;
   }
 
 </style>
