@@ -5,29 +5,39 @@
       <input type="text" placeholder=" Pesquisar"
         v-model="treeFilter" class="filter-field">
     </div>
-    <hr>
-    <!-- <div class="menu-options">
-      <a href="">Medicos</a>
-      <a href="">Clinica</a>
-      <a href="">Orgao</a>
-      <a href="">Teste</a>
-    </div> -->
-    <!-- <div class="menu-dropdown">
-      <b-dropdown right split text="Split Menu">
-        <b-dropdown-item>Medicos</b-dropdown-item>
-        <b-dropdown-item>Clinica</b-dropdown-item>
-      </b-dropdown>
-    </div> -->
+    <div>
+      <tree
+      :data="items"
+      :options="options"
+      ref="tree"
+      />
+    </div>
   </aside>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import Tree from 'liquor-tree'
 
 
 export default {
   nome: "Menu",
-  computed: mapState(['isMenuVisible'])
+  components: {Tree},
+  computed: mapState(['isMenuVisible']),
+  data(){
+    return {
+      items: [
+        {text: 'Medicos', children: [
+          {text: 'Cadastro'},
+        ]},{text: 'Instituição', children: [
+          {text: "Cadastro"}
+        ]},
+        {text: 'Atestado', children: [
+          {text: 'Gerar'}
+        ]}
+      ]
+    }
+  }
 };
 </script>
 
@@ -49,15 +59,11 @@ export default {
     padding: 5px;
   }
 
-
-  /* .menu-options a {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 30px;
-    color: black;
-    text-decoration: none;
+  a:-webkit-any-link {
+      color: -webkit-link;
+      cursor: pointer;
+      text-decoration: none;
+      color: #343434;
   }
-  .menu-options a:hover {
-    background: linear-gradient(to left, rgba(255,0,0,0), rgba(0, 100, 0, 1));
-  } */
+
 </style>
