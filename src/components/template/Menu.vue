@@ -1,11 +1,6 @@
 <template>
   <aside class="menu" v-show="isMenuVisible">
-    <div class="menu-filter">
-      <i class="fa fa-search fa-lg"></i>
-      <input type="text" placeholder=" Pesquisar"
-        v-model="treeFilter" class="filter-field">
-    </div>
-    <div>
+    <div class="tree-options">
       <tree
       :data="items"
       :options="options"
@@ -18,29 +13,28 @@
 <script>
 import { mapState } from 'vuex';
 import Tree from 'liquor-tree'
-
-
+ 
 export default {
   nome: "Menu",
-  components: {Tree},
+  components: { Tree },
   computed: mapState(['isMenuVisible']),
   data(){
     return {
       items: [
-        {text: 'Medicos', children: [
-          {text: 'Listar'},
-        ]},{text: 'Instituição', children: [
-          {text: "Listar"}
+        {text: 'Cadastro', children: [
+          {text: 'Especialidade'},
+          {text: 'Instituição'},
+          {text: 'Medicamento'},
+          {text: 'CID'},
         ]},
-        {text: 'Atestado', children: [
-          {text: 'Gerar'}
-        ]},
-        {text: 'Usuarios', children: [
-          {text: 'Listar'}
+        {text: 'Emitir', children: [
+          {text: 'Receita'},
+          {text: 'Atestado'},
+          {text: 'Paciente'},
         ]}
       ]
     }
-  }
+  } 
 };
 </script>
 
@@ -51,15 +45,7 @@ export default {
     background: #e9f7e9;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-  }
-
-  .menu-filter {
-    padding: 10px 5px;
-  }
-
-  .menu-filter i {
-    padding: 5px;
+    overflow: auto;
   }
 
   a:-webkit-any-link {
