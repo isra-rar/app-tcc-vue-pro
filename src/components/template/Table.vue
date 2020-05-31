@@ -1,11 +1,11 @@
 <template>
   <div class="overflow-auto">
     <b-table id="my-table" hover striped :items="items" :fields="fields" :per-page="perPage" :current-page="currentPage" small>
-      <template slot="actions" >
-        <b-button variant="warning"  class="mr-2">
+      <template v-slot:cell(actions)="data">
+        <b-button variant="warning" @click="loadData(data.item)" class="mr-2">
           <i class="fa fa-pencil"></i>
         </b-button>
-        <b-button variant="danger">
+        <b-button variant="danger" @click="loadData(data.item, 'remove') ">
           <i class="fa fa-trash"></i>
         </b-button>
       </template>

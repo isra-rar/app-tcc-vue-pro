@@ -1,21 +1,5 @@
 {
-  "crms": [
-    {
-      "razaoSocial": "teste",
-      "nomeFantasia": "teste",
-      "cnpj": "teste",
-      "presidente": "teste",
-      "endereco": {
-        "cep": "58052140",
-        "logradouro": "Rua Pastor Rodolfo Beuttemuller",
-        "bairro": "Jardim Cidade Universitária",
-        "numero": "123",
-        "localidade": "João Pessoa",
-        "uf": "PB"
-      },
-      "id": 1
-    }
-  ],
+  "crms": [],
   "signup": [
     {
       "name": "Israel Araujo",
@@ -66,6 +50,18 @@
       "password": "12345",
       "confirmPassword": "12345",
       "id": 8
+    },
+    {
+      "id": 9
+    },
+    {
+      "id": 10
+    },
+    {
+      "id": 11
+    },
+    {
+      "id": 12
     }
   ],
   "instituicoes": [
