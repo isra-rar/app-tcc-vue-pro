@@ -159,7 +159,6 @@ import { baseApiUrl, showError } from "@/global";
 import axios from "axios";
 import { getCep } from "../../services/cepApi";
 import Table from "../template/Table";
-
 export default {
   name: "CrmAdmin",
   components: { Table },
