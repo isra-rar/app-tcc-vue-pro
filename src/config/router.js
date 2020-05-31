@@ -21,7 +21,43 @@ const routes = [{
     name: 'auth',
     path: '/auth',
     component: Auth
-}]
+},
+{
+    name: 'especialidade',
+    path: '/especialidade',
+    component: Home
+},
+{
+    name: 'instituicao',
+    path: '/instituicao',
+    component: AdminPages
+},
+{
+    name: 'medicamento',
+    path: '/medicamento',
+    component: Home
+},
+{
+    name: 'cid',
+    path: '/cid',
+    component: AdminPages
+},
+{
+    name: 'receita',
+    path: '/receita',
+    component: Home
+},
+{
+    name: 'atestado',
+    path: '/atestado',
+    component: AdminPages
+},
+{
+    name: 'paciente',
+    path: '/paciente',
+    component: Home
+}
+]
 
 export default new VueRouter({
     mode: 'history',
