@@ -50,4 +50,5 @@ export default {
   .page-link {
     color: #28a745;
   }
+
 </style>

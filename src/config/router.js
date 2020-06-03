@@ -5,6 +5,7 @@ import Home from '@/components/home/Home.vue';
 import AdminPages from '@/components/admin/AdminPages.vue';
 import Auth from '@/components/auth/Auth.vue'
 import Instituicao from '@/components/view/Instituicao.vue';
+import Especialidade from '@/components/view/Especialidade.vue';
 
 Vue.use(VueRouter)
 
@@ -25,8 +26,8 @@ const routes = [{
 },
 {
     name: 'especialidade',
-    path: '/especialidade',
-    component: Home
+    path: '/Especialidade',
+    component: Especialidade
 },
 {
     name: 'instituicao',

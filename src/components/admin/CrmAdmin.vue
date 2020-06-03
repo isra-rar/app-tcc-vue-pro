@@ -138,9 +138,6 @@
           <b-button variant="success" v-if="mode === 'save'" @click="save">Salvar</b-button>
           <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
           <b-button class="ml-2" @click="reset">Cancelar</b-button>
-          <b-button variant="warning" class="mr-2">
-          <i class="fa fa-pencil"></i>
-        </b-button>
         </b-col>
       </b-row>
     </b-form>

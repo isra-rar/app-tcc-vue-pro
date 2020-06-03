@@ -22,16 +22,22 @@ export default {
           children: [
             { text: "Especialidade" },
             { text: "Instituição" },
-            { text: "Medicamento" },
-            { text: "CID" }
+            { text: 'Medico' },
+            { text: 'Usuario' }
           ]
         },
         {
           text: "Emitir",
           children: [
             { text: "Receita" },
-            { text: "Atestado" },
-            { text: "Paciente" }
+            { text: "Atestado" }
+          ]
+        },
+        {
+          text: 'Consulta',
+          children: [
+            { text: 'Medicamento' },
+            { text: 'CID' }
           ]
         }
       ]
@@ -40,7 +46,7 @@ export default {
   methods: {
     onNodeSelect(node) {
       let routerNode = node.data.text.toLowerCase();
-      if (routerNode != 'cadastro' && routerNode != 'emitir') {
+      if (routerNode != 'cadastro' && routerNode != 'emitir' && routerNode != 'consulta') {
         routerNode = this.removeAccents(routerNode);
         this.$router.push({
           path: routerNode

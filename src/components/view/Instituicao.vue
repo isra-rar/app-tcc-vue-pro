@@ -1,5 +1,6 @@
 <template>
   <div class="crm-admin">
+    <PageTitle  icon="fa fa-university" main="Instituição"/>
     <b-form>
       <input type="hidden" id="user-id" v-model="instituicao.id" />
       <b-row>
@@ -30,14 +31,41 @@
       </b-row>
       <b-row>
         <b-col md="6" sm="12">
-          <b-form-group label="Complemento:" label-for="instituicao-bairro">
+          <b-form-group label="CEP:" label-for="instituicao-cep">
+            <b-form-input
+              id="instituicao-cep"
+              type="text"
+              v-model="instituicao.endereco.cep"
+              @blur.native="buscaCep"
+              required
+              :readonly="mode === 'remove'"
+              placeholder="Informe o CEP"
+            />
+          </b-form-group>
+        </b-col>
+        <b-col md="6" sm="12">
+          <b-form-group label="Logradouro:" label-for="instituicao-logradouro">
+            <b-form-input
+              id="instituicao-logradouro"
+              type="text"
+              v-model="instituicao.endereco.logradouro"
+              required
+              :readonly="mode === 'remove'"
+              placeholder="Informe o Logradouro"
+            />
+          </b-form-group>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col md="6" sm="12">
+          <b-form-group label="Bairro:" label-for="instituicao-bairro">
             <b-form-input
               id="instituicao-bairro"
               type="text"
-              v-model="instituicao.endereco.complemento"
+              v-model="instituicao.endereco.bairro"
               required
               :readonly="mode === 'remove'"
-              placeholder="Informe o Complemento"
+              placeholder="Informe o Bairro"
             />
           </b-form-group>
         </b-col>
@@ -50,6 +78,46 @@
               required
               :readonly="mode === 'remove'"
               placeholder="Informe o Numero"
+            />
+          </b-form-group>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col md="6" sm="12">
+          <b-form-group label="Cidade:" label-for="instituicao-cidade">
+            <b-form-input
+              id="instituicao-cidade"
+              type="text"
+              v-model="instituicao.endereco.cidade"
+              required
+              :readonly="mode === 'remove'"
+              placeholder="Informe a Cidade"
+            />
+          </b-form-group>
+        </b-col>
+        <b-col md="6" sm="12">
+          <b-form-group label="UF:" label-for="instituicao-uf">
+            <b-form-input
+              id="instituicao-uf"
+              type="text"
+              v-model="instituicao.endereco.uf"
+              required
+              :readonly="mode === 'remove'"
+              placeholder="Informe a UF"
+            />
+          </b-form-group>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col md="6" sm="12">
+          <b-form-group label="Complemento:" label-for="instituicao-bairro">
+            <b-form-input
+              id="instituicao-complemento"
+              type="text"
+              v-model="instituicao.endereco.complemento"
+              required
+              :readonly="mode === 'remove'"
+              placeholder="Informe o Complemento"
             />
           </b-form-group>
         </b-col>
@@ -76,13 +144,15 @@
 </template>
 
 <script>
+import PageTitle from "../template/PageTitle.vue";
 import { baseApiUrl, showError } from "@/global";
 import axios from "axios";
 import Table from "../template/Table";
+import { getCep } from "../../services/cepApi";
 
 export default {
   name: "Instituicao",
-  components: { Table },
+  components: { Table, PageTitle },
   data() {
     return {
       pagina: 1,
@@ -92,7 +162,12 @@ export default {
         cnpj: "",
         razaoSocial: "",
         endereco: {
+          cep: "",
+          logradouro: "",
+          bairro: "",
           numero: "",
+          cidade: "",
+          uf: "",
           complemento: ""
         }
       },
@@ -121,14 +196,16 @@ export default {
     };
   },
   methods: {
-    loadInstituicoes() {
+    loadData() {
       const url = `${baseApiUrl}/instituicoes`;
       axios.get(url).then(res => {
         this.instituicoes = res.data;
       });
     },
     reset() {
-      (this.mode = "save"), (this.instituicao = { endereco: {} }), this.loadInstituicoes();
+      (this.mode = "save"),
+        (this.instituicao = { endereco: {} }),
+        this.loadData();
     },
     save() {
       const method = this.instituicao.id ? "put" : "post";
@@ -139,6 +216,17 @@ export default {
           this.reset();
         })
         .catch(showError);
+    },
+    async buscaCep() {
+      const response = await getCep(this.instituicao.endereco.cep);
+      if (response.data.erro) {
+        return;
+      }
+      const { logradouro, bairro, cidade, uf } = response.data;
+      this.instituicao.endereco.logradouro = logradouro;
+      this.instituicao.endereco.bairro = bairro;
+      this.instituicao.endereco.cidade = cidade;
+      this.instituicao.endereco.uf = uf;
     },
     remove() {
       const id = this.instituicao.id;
@@ -156,7 +244,7 @@ export default {
     }
   },
   mounted() {
-    this.loadInstituicoes();
+    this.loadData();
   }
 };
 </script>
