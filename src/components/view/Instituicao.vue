@@ -74,7 +74,7 @@
             <b-form-input
               id="instituicao-numero"
               type="text"
-              v-model="instituicao.endereco.numero"
+              v-model="instituicao.endereco.numeroEndereco"
               required
               :readonly="mode === 'remove'"
               placeholder="Informe o Numero"
@@ -145,7 +145,7 @@
 
 <script>
 import PageTitle from "../template/PageTitle.vue";
-import { baseApiUrl, showError } from "@/global";
+import { baseApiUrlTrue, showError } from "@/global";
 import axios from "axios";
 import Table from "../template/Table";
 import { getCep } from "../../services/cepApi";
@@ -161,13 +161,14 @@ export default {
       instituicao: {
         cnpj: "",
         razaoSocial: "",
+        tipoInstituicao: "CONSELHO",
         endereco: {
-          cep: "",
           logradouro: "",
           bairro: "",
-          numero: "",
+          cep: "",
           cidade: "",
           uf: "",
+          numeroEndereco: "",
           complemento: ""
         }
       },
@@ -197,7 +198,7 @@ export default {
   },
   methods: {
     loadData() {
-      const url = `${baseApiUrl}/instituicoes`;
+      const url = `${baseApiUrlTrue}/instituicoes`;
       axios.get(url).then(res => {
         this.instituicoes = res.data;
       });
@@ -210,7 +211,7 @@ export default {
     save() {
       const method = this.instituicao.id ? "put" : "post";
       const id = this.instituicao.id ? `/${this.instituicao.id}` : "";
-      axios[method](`${baseApiUrl}/instituicoes${id}`, this.instituicao)
+      axios[method](`${baseApiUrlTrue}/instituicoes${id}`, this.instituicao)
         .then(() => {
           this.$toasted.global.defaultSuccess();
           this.reset();
@@ -230,7 +231,7 @@ export default {
     },
     remove() {
       const id = this.instituicao.id;
-      axios.delete(`${baseApiUrl}/instituicoes/${id}`).then(() => {
+      axios.delete(`${baseApiUrlTrue}/instituicoes/${id}`).then(() => {
         this.$toasted.global.defaultSuccess();
         this.reset();
       });
