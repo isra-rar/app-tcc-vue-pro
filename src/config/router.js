@@ -6,6 +6,7 @@ import AdminPages from '@/components/admin/AdminPages.vue';
 import Auth from '@/components/auth/Auth.vue'
 import Instituicao from '@/components/view/Instituicao.vue';
 import Especialidade from '@/components/view/Especialidade.vue';
+import Medico from '@/components/view/Medico.vue'
 
 Vue.use(VueRouter)
 
@@ -35,9 +36,9 @@ const routes = [{
     component: Instituicao
 },
 {
-    name: 'medicamento',
-    path: '/medicamento',
-    component: Home
+    name: 'medico',
+    path: '/medico',
+    component: Medico
 },
 {
     name: 'cid',

@@ -40,7 +40,7 @@
 
 <script>
 import PageTitle from "../template/PageTitle.vue";
-import { showError, baseApiUrlTrue } from "@/global";
+import { showError, baseApiUrl } from "@/global";
 import axios from "axios";
 import Table from "../template/Table";
 
@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     loadData() {
-      const url = `${baseApiUrlTrue}/especialidades`;
+      const url = `${baseApiUrl}/especialidades`;
       axios.get(url).then(res => {
         this.especialidades = res.data;
       });
@@ -87,7 +87,7 @@ export default {
     save() {
       const method = this.especialidade.id ? "put" : "post";
       const id = this.especialidade.id ? `/${this.especialidade.id}` : "";
-      axios[method](`${baseApiUrlTrue}/especialidades${id}`, this.especialidade)
+      axios[method](`${baseApiUrl}/especialidades${id}`, this.especialidade)
         .then(() => {
           this.$toasted.global.defaultSuccess();
           this.reset();
@@ -96,7 +96,7 @@ export default {
     },
     remove() {
       const id = this.especialidade.id;
-      axios.delete(`${baseApiUrlTrue}/especialidades/${id}`).then(() => {
+      axios.delete(`${baseApiUrl}/especialidades/${id}`).then(() => {
         this.$toasted.global.defaultSuccess();
         this.reset();
       });

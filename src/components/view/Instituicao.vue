@@ -1,5 +1,5 @@
 <template>
-  <div class="crm-admin">
+  <div>
     <PageTitle  icon="fa fa-university" main="Instituição"/>
     <b-form>
       <input type="hidden" id="user-id" v-model="instituicao.id" />
@@ -145,7 +145,7 @@
 
 <script>
 import PageTitle from "../template/PageTitle.vue";
-import { baseApiUrlTrue, showError } from "@/global";
+import { baseApiUrl, showError } from "@/global";
 import axios from "axios";
 import Table from "../template/Table";
 import { getCep } from "../../services/cepApi";
@@ -198,7 +198,7 @@ export default {
   },
   methods: {
     loadData() {
-      const url = `${baseApiUrlTrue}/instituicoes`;
+      const url = `${baseApiUrl}/instituicoes`;
       axios.get(url).then(res => {
         this.instituicoes = res.data;
       });
@@ -211,7 +211,7 @@ export default {
     save() {
       const method = this.instituicao.id ? "put" : "post";
       const id = this.instituicao.id ? `/${this.instituicao.id}` : "";
-      axios[method](`${baseApiUrlTrue}/instituicoes${id}`, this.instituicao)
+      axios[method](`${baseApiUrl}/instituicoes${id}`, this.instituicao)
         .then(() => {
           this.$toasted.global.defaultSuccess();
           this.reset();
@@ -223,15 +223,15 @@ export default {
       if (response.data.erro) {
         return;
       }
-      const { logradouro, bairro, cidade, uf } = response.data;
+      const { logradouro, bairro, localidade, uf } = response.data;
       this.instituicao.endereco.logradouro = logradouro;
       this.instituicao.endereco.bairro = bairro;
-      this.instituicao.endereco.cidade = cidade;
+      this.instituicao.endereco.cidade = localidade;
       this.instituicao.endereco.uf = uf;
     },
     remove() {
       const id = this.instituicao.id;
-      axios.delete(`${baseApiUrlTrue}/instituicoes/${id}`).then(() => {
+      axios.delete(`${baseApiUrl}/instituicoes/${id}`).then(() => {
         this.$toasted.global.defaultSuccess();
         this.reset();
       });

@@ -18,17 +18,14 @@
         <a href @click.prevent="showSignup = !showSignup">
             <span v-if="showSignup">Já tem cadastro? Acesse o Login!</span>
             <span v-else>Não tem cadastro? Registre-se aqui!</span>
-
         </a>
-        
-        
       </div>
   </div>
 </template>
 
 <script>
-import { baseApiUrl, showError, userKey } from '@/global'
-import axios from 'axios'
+// import { baseApiUrl, showError, userKey } from '@/global'
+// import axios from 'axios'
 
 export default {
     name: 'Auth',
@@ -41,24 +38,24 @@ export default {
         }
     },
     methods: {
-        signin(){
-            axios.post(`${baseApiUrl}/signin`, this.user)
-            .then(res => {
-                this.$store.commit('setUser', res.data)
-                localStorage.setItem(userKey, JSON.stringify(res.data))
-                this.$router.push({ path:'/' })
-            })
-            .catch(showError)
-        },
-        signup() {
-            axios.post(`${baseApiUrl}/signup`, this.user)
-                .then(() => {
-                    this.$toasted.global.defaultSucess()
-                    this.user = {}
-                    this.showSignup = false
-                })
-                .catch(showError)
-        }
+        // signin(){
+        //     axios.post(`${baseApiUrl}/signin`, this.user)
+        //     .then(res => {
+        //         this.$store.commit('setUser', res.data)
+        //         localStorage.setItem(userKey, JSON.stringify(res.data))
+        //         this.$router.push({ path:'/' })
+        //     })
+        //     .catch(showError)
+        // },
+        // signup() {
+        //     axios.post(`${baseApiUrl}/signup`, this.user)
+        //         .then(() => {
+        //             this.$toasted.global.defaultSucess()
+        //             this.user = {}
+        //             this.showSignup = false
+        //         })
+        //         .catch(showError)
+        // }
     }
 }
 </script>
