@@ -8,21 +8,24 @@ import Instituicao from '@/components/view/Instituicao.vue';
 import Especialidade from '@/components/view/Especialidade.vue';
 import Medico from '@/components/view/Medico.vue'
 
+import { userKey } from '@/global'
+
 Vue.use(VueRouter)
 
 const routes = [{
     name: 'home',
-    path: '/',
+    path: '/home',
     component: Home
 },
 {
     name: 'adminPages',
     path: '/admin',
-    component: AdminPages
+    component: AdminPages,
+    meta: { requiresAdmin: true }
 },
 {
     name: 'auth',
-    path: '/auth',
+    path: '/',
     component: Auth
 },
 {
@@ -62,7 +65,20 @@ const routes = [{
 }
 ]
 
-export default new VueRouter({
+ const router = new VueRouter({
     mode: 'history',
     routes
 })
+
+router.beforeEach((to, from, next) => {
+    const json = localStorage.getItem(userKey)
+
+    if(to.matched.some(record => record.meta.requiresAdmin)) {
+        const user = JSON.parse(json)
+        user && user.tipousuario == 1 ? next() : next({ path: '/' })
+    } else {
+        next()
+    }
+})
+
+export default router

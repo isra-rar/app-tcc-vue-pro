@@ -6,7 +6,7 @@
       <div class="auth-title">{{ showSignup ? 'Cadastro' : 'Login' }}</div>
       <input v-if="showSignup" v-model="user.name" type="text" placeholder="Nome" name="nome" />
       <input v-model="user.username" type="text" placeholder="E-mail" name="email" />
-      <input v-model="user.password" type="password" placeholder="Senha" name="senha" />
+      <input v-model="user.password" type="password" placeholder="Senha" name="senha" v-on:keyup.enter="signin"/>
       <input
         v-if="showSignup"
         v-model="user.confirmPassword"
@@ -16,7 +16,7 @@
       />
 
       <button v-if="showSignup" @click="signup">Registrar</button>
-      <button v-else @click="signin">Entrar</button>
+      <button v-else @click="signin" >Entrar</button>
 
       <a href @click.prevent="showSignup = !showSignup">
         <span v-if="showSignup">Já tem cadastro? Acesse o Login!</span>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { baseApiUrl, showError, userKey, usernameBasic, passwordBasic} from "@/global";
+import { baseApiUrl, userKey, showError, usernameBasic, passwordBasic} from "@/global";
 import axios from "axios";
 import qs from "qs";
 
@@ -55,7 +55,8 @@ export default {
         })
         .then(res => {
           this.$store.commit("setUser", res.data);
-          this.$router.push({ path: "/" });
+          localStorage.setItem(userKey, JSON.stringify(res.data))
+          this.$router.push({ path: "/home" });
         })
         .catch(showError);
     },
