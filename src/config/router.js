@@ -5,28 +5,33 @@ import Home from '@/components/home/Home.vue';
 import AdminPages from '@/components/admin/AdminPages.vue';
 import Auth from '@/components/auth/Auth.vue'
 import Instituicao from '@/components/view/Instituicao.vue';
+import Especialidade from '@/components/view/Especialidade.vue';
+import Medico from '@/components/view/Medico.vue'
+
+import { userKey } from '@/global'
 
 Vue.use(VueRouter)
 
 const routes = [{
     name: 'home',
-    path: '/',
+    path: '/home',
     component: Home
 },
 {
     name: 'adminPages',
     path: '/admin',
-    component: AdminPages
+    component: AdminPages,
+    meta: { requiresAdmin: true }
 },
 {
     name: 'auth',
-    path: '/auth',
+    path: '/',
     component: Auth
 },
 {
     name: 'especialidade',
-    path: '/especialidade',
-    component: Home
+    path: '/Especialidade',
+    component: Especialidade
 },
 {
     name: 'instituicao',
@@ -34,9 +39,9 @@ const routes = [{
     component: Instituicao
 },
 {
-    name: 'medicamento',
-    path: '/medicamento',
-    component: Home
+    name: 'medico',
+    path: '/medico',
+    component: Medico
 },
 {
     name: 'cid',
@@ -60,7 +65,20 @@ const routes = [{
 }
 ]
 
-export default new VueRouter({
+ const router = new VueRouter({
     mode: 'history',
     routes
 })
+
+router.beforeEach((to, from, next) => {
+    const json = localStorage.getItem(userKey)
+
+    if(to.matched.some(record => record.meta.requiresAdmin)) {
+        const user = JSON.parse(json)
+        user && user.tipousuario == 1 ? next() : next({ path: '/' })
+    } else {
+        next()
+    }
+})
+
+export default router

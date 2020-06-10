@@ -1,7 +1,9 @@
 import Vue from 'vue'
 
 export const userKey = '__knowlegde_user'
-export const baseApiUrl = 'http://localhost:3000'
+export const baseApiUrl = 'http://localhost:8081'
+export const usernameBasic = 'angular'
+export const passwordBasic = '@ngul@r0'
 
 export function showError(e) {
     if(e && e.response && e.response.data) {
@@ -17,4 +19,4 @@ export function showError(e) {
     }
 }
 
-export default { baseApiUrl, showError, userKey}
+export default { baseApiUrl, showError, userKey, usernameBasic, passwordBasic}
