@@ -198,7 +198,7 @@ export default {
   },
   methods: {
     loadData() {
-      const url = `${baseApiUrl}/api/instituicoes`;
+      const url = `${baseApiUrl}/instituicoes`;
       axios.get(url).then(res => {
         this.instituicoes = res.data;
       });
@@ -211,7 +211,7 @@ export default {
     save() {
       const method = this.instituicao.id ? "put" : "post";
       const id = this.instituicao.id ? `/${this.instituicao.id}` : "";
-      axios[method](`${baseApiUrl}/api/instituicoes${id}`, this.instituicao)
+      axios[method](`${baseApiUrl}/instituicoes${id}`, this.instituicao)
         .then(() => {
           this.$toasted.global.defaultSuccess();
           this.reset();
@@ -231,7 +231,7 @@ export default {
     },
     remove() {
       const id = this.instituicao.id;
-      axios.delete(`${baseApiUrl}/api/instituicoes/${id}`).then(() => {
+      axios.delete(`${baseApiUrl}/instituicoes/${id}`).then(() => {
         this.$toasted.global.defaultSuccess();
         this.reset();
       });

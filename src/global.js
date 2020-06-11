@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 export const userKey = '__knowlegde_user'
-export const baseApiUrl = 'http://localhost:8081'
+export const baseApiUrl = 'https://tcc-receitasegura-api.herokuapp.com/api'
 export const usernameBasic = 'angular'
 export const passwordBasic = '@ngul@r0'
 

@@ -228,13 +228,13 @@ export default {
   },
   methods: {
     loadData() {
-      const url = `${baseApiUrl}/api/medicos`;
+      const url = `${baseApiUrl}/medicos`;
       axios.get(url).then(res => {
         this.medicos = res.data;
       });
     },
     loadEspecialidades() {
-      const url = `${baseApiUrl}/api/especialidades`;
+      const url = `${baseApiUrl}/especialidades`;
       axios.get(url).then(res => {
         this.especialidades = res.data.map(especialidade => {
           return {
@@ -246,7 +246,7 @@ export default {
       });
     },
     loadInstituicoes() {
-      const url = `${baseApiUrl}/api/instituicoes`;
+      const url = `${baseApiUrl}/instituicoes`;
       axios.get(url).then(res => {
         this.instituicoes = res.data.map(instituicao => {
           return {
@@ -265,7 +265,7 @@ export default {
     save() {
       const method = this.medico.id ? "put" : "post";
       const id = this.medico.id ? `/${this.medico.id}` : "";
-      axios[method](`${baseApiUrl}/api/medicos${id}`, this.medico)
+      axios[method](`${baseApiUrl}/medicos${id}`, this.medico)
         .then(() => {
           this.$toasted.global.defaultSuccess();
           this.reset();
@@ -285,7 +285,7 @@ export default {
     },
     remove() {
       const id = this.medico.id;
-      axios.delete(`${baseApiUrl}/api/medicos/${id}`).then(() => {
+      axios.delete(`${baseApiUrl}/medicos/${id}`).then(() => {
         this.$toasted.global.defaultSuccess();
         this.reset();
       });
