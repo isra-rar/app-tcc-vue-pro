@@ -23,7 +23,8 @@ export default {
             { text: "Especialidade" },
             { text: "Instituição" },
             { text: 'Medico' },
-            { text: 'Usuario' }
+            { text: 'Usuario' },
+            { text: 'Paciente' }
           ]
         },
         {

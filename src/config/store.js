@@ -1,13 +1,15 @@
 import axios from 'axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { userKey } from "@/global";
 
 Vue.use(Vuex)
+
 
 export default new Vuex.Store({
     state: {
         isMenuVisible: false,
-        user: null
+        user: null || JSON.parse(localStorage.getItem(userKey))
     },
     mutations: {
         toggleMenu(state, isVisible) {
@@ -23,6 +25,9 @@ export default new Vuex.Store({
             }
         },
         setUser(state, user) {
+            if(!user) {
+                user = state.user
+            }
             state.user = user
             if(user) {
                 axios.defaults.headers.common['Authorization'] = `bearer ${user.access_token}`

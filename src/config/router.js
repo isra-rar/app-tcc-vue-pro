@@ -7,6 +7,7 @@ import Auth from '@/components/auth/Auth.vue'
 import Instituicao from '@/components/view/Instituicao.vue';
 import Especialidade from '@/components/view/Especialidade.vue';
 import Medico from '@/components/view/Medico.vue'
+import Paciente from '@/components/view/Paciente.vue'
 
 import { userKey } from '@/global'
 
@@ -44,6 +45,11 @@ const routes = [{
     component: Medico
 },
 {
+    name: 'paciente',
+    path: '/paciente',
+    component: Paciente
+},
+{
     name: 'cid',
     path: '/cid',
     component: AdminPages
@@ -58,11 +64,6 @@ const routes = [{
     path: '/atestado',
     component: AdminPages
 },
-{
-    name: 'paciente',
-    path: '/paciente',
-    component: Home
-}
 ]
 
  const router = new VueRouter({
