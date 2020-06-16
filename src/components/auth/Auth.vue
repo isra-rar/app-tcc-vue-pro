@@ -1,5 +1,5 @@
 <template>
-  <div class="auth-content">
+  <div class="auth-content" v-show="!isLoginVisible">
     <div class="auth-modal">
       <label class="logo-login">Receita Segura</label>
       <hr />
@@ -30,9 +30,11 @@
 import { baseApiUrl, userKey, showError, usernameBasic, passwordBasic} from "@/global";
 import axios from "axios";
 import qs from "qs";
+import { mapState } from "vuex";
 
 export default {
   name: "Auth",
+  computed: mapState(["isLoginVisible"]),
   data() {
     return {
       showSignup: false,

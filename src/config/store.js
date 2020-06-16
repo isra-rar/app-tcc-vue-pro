@@ -9,6 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         isMenuVisible: false,
+        isLoginVisible: false,
         user: null || JSON.parse(localStorage.getItem(userKey))
     },
     mutations: {
@@ -32,6 +33,7 @@ export default new Vuex.Store({
             if(user) {
                 axios.defaults.headers.common['Authorization'] = `bearer ${user.access_token}`
                 state.isMenuVisible = true
+                state.isLoginVisible = true
             } else {
                 delete axios.defaults.headers.common['Authorization']
                 state.isMenuVisible = false
