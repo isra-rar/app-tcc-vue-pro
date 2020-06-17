@@ -52,80 +52,15 @@
       </b-row>
       <b-row>
         <b-col md="6" sm="12">
-          <b-form-group label="CEP:" label-for="usuario-cep">
-            <b-form-input
-              id="usuarioCep"
-              type="text"
-              v-model="usuario.endereco.cep"
-              @blur.native="buscaCep"
-              required
-              :readonly="mode === 'remove'"
-              placeholder="Informe o CEP"
-            />
-          </b-form-group>
-        </b-col>
-        <b-col md="6" sm="12">
-          <b-form-group label="Logradouro:" label-for="usuario-logradouro">
-            <b-form-input
-              id="usuario-logradouro"
-              type="text"
-              v-model="usuario.endereco.logradouro"
-              required
-              :readonly="mode === 'remove'"
-              placeholder="Informe o Logradouro"
-            />
-          </b-form-group>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col md="6" sm="12">
-          <b-form-group label="Bairro:" label-for="usuario-bairro">
-            <b-form-input
-              id="medusuarioico-bairro"
-              type="text"
-              v-model="usuario.endereco.bairro"
-              required
-              :readonly="mode === 'remove'"
-              placeholder="Informe o Bairro"
-            />
-          </b-form-group>
-        </b-col>
-        <b-col md="6" sm="12">
-          <b-form-group label="Numero:" label-for="usuario-numero">
-            <b-form-input
-              id="usuario-numero"
-              type="text"
-              v-model="usuario.endereco.numeroEndereco"
-              required
-              :readonly="mode === 'remove'"
-              placeholder="Informe o Numero"
-            />
-          </b-form-group>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col md="6" sm="12">
-          <b-form-group label="Cidade:" label-for="usuario-cidade">
-            <b-form-input
-              id="usuario-cidade"
-              type="text"
-              v-model="usuario.endereco.cidade"
-              required
-              :readonly="mode === 'remove'"
-              placeholder="Informe a Cidade"
-            />
-          </b-form-group>
-        </b-col>
-        <b-col md="6" sm="12">
-          <b-form-group label="UF:" label-for="usuario-uf">
-            <b-form-input
-              id="usuario-uf"
-              type="text"
-              v-model="usuario.endereco.uf"
-              required
-              :readonly="mode === 'remove'"
-              placeholder="Informe a UF"
-            />
+          <b-form-group label="Instituição" label-for="instituicao">
+            <b-form-select v-model="usuario.instituicao.id">
+              <option :value="null" disabled>Seleciona a instituição</option>
+              <option
+                v-for="instituicaoUser in instituicoes"
+                :key="instituicaoUser.id"
+                :value="instituicaoUser.id"
+              >{{ instituicaoUser.razaoSocial }}</option>
+            </b-form-select>
           </b-form-group>
         </b-col>
       </b-row>
@@ -155,7 +90,6 @@ import PageTitle from "../template/PageTitle.vue";
 import { showError, baseApiUrl } from "@/global";
 import axios from "axios";
 import Table from "../template/Table";
-import { getCep } from "../../services/cepApi";
 
 export default {
   name: "Usuario",
@@ -171,15 +105,12 @@ export default {
         { value: "GOVERNO", text: "GOVERNO" },
         { value: "PROFISSIONAL", text: "PROFISSIONAL" }
       ],
+      instituicaoUser: {},
+      instituicoes: [],
       usuario: {
         nivelDeAcesso: null,
-        endereco: {
-          logradouro: "",
-          bairro: "",
-          cep: "",
-          cidade: "",
-          uf: "",
-          numeroEndereco: ""
+        instituicao: {
+          id: null
         }
       },
       usuarios: [],
@@ -208,9 +139,21 @@ export default {
         this.usuarios = res.data;
       });
     },
+    loadInstituicoes() {
+      const url = `${baseApiUrl}/instituicoes`;
+      axios.get(url).then(res => {
+        this.instituicoes = res.data.map(instituicaoUser => {
+          return {
+            ...instituicaoUser,
+            value: instituicaoUser.id,
+            text: instituicaoUser.razaoSocial
+          };
+        });
+      });
+    },
     reset() {
       (this.mode = "save"),
-        (this.usuario = { nivelDeAcesso: null }),
+        (this.usuario = { nivelDeAcesso: null, instituicao: null }),
         this.loadData();
     },
     save() {
@@ -230,19 +173,6 @@ export default {
         this.reset();
       });
     },
-    async buscaCep() {
-      const response = await getCep(this.usuario.endereco.cep);
-
-      if(!response){
-          return
-      }
-
-      const { street, city, neighborhood, state } = response;
-      this.usuario.endereco.logradouro = street;
-      this.usuario.endereco.bairro = neighborhood;
-      this.usuario.endereco.cidade = city;
-      this.usuario.endereco.uf = state;
-    },
     linkGen(pageNum) {
       return pageNum === 1 ? "?" : `?page=${pageNum}`;
     },
@@ -253,6 +183,7 @@ export default {
   },
   mounted() {
     this.loadData();
+    this.loadInstituicoes();
   }
 };
 </script>
