@@ -12,6 +12,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
+    "cep-promise": "^3.0.9",
     "font-awesome": "4.7.0",
     "highlightjs": "9.10.0",
     "jw-vue-pagination": "^1.0.3",

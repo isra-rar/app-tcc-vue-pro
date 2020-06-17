@@ -220,14 +220,16 @@ export default {
     },
     async buscaCep() {
       const response = await getCep(this.instituicao.endereco.cep);
-      if (response.data.erro) {
+
+      if (!response) {
         return;
       }
-      const { logradouro, bairro, localidade, uf } = response.data;
-      this.instituicao.endereco.logradouro = logradouro;
-      this.instituicao.endereco.bairro = bairro;
-      this.instituicao.endereco.cidade = localidade;
-      this.instituicao.endereco.uf = uf;
+
+      const { street, city, neighborhood, state } = response;
+      this.instituicao.endereco.logradouro = street;
+      this.instituicao.endereco.bairro = neighborhood;
+      this.instituicao.endereco.cidade = city;
+      this.instituicao.endereco.uf = state;
     },
     remove() {
       const id = this.instituicao.id;

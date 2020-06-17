@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <PageTitle icon="fa fa-user" main="Pacientes" />
+  <div class="crm-admin">
+    <PageTitle icon="fa fa-users" main="Usuario" />
     <b-form>
-      <input type="hidden" id="user-id" v-model="paciente.id" />
+      <input type="hidden" id="user-id" v-model="usuario.id" />
       <b-row>
         <b-col md="6" sm="12">
-          <b-form-group label="Nome:" label-for="paciente-nome">
+          <b-form-group label="Nome:" label-for="usuario-nome">
             <b-form-input
-              id="nomePaciente"
+              id="nome"
               type="text"
-              v-model="paciente.nome"
+              v-model="usuario.nomeUsuario"
               required
               :readonly="mode === 'remove'"
               placeholder="Informe o nome"
@@ -17,39 +17,46 @@
           </b-form-group>
         </b-col>
         <b-col md="6" sm="12">
-          <b-form-group label="CPF:" label-for="paciente-cpf">
+          <b-form-group label="Matricula:" label-for="usuario-matricula">
             <b-form-input
-              id="cpfPaciente"
+              id="matricula"
               type="text"
-              v-model="paciente.cpf"
+              v-model="usuario.matricula"
               required
               :readonly="mode === 'remove'"
-              placeholder="Informe o CPF"
+              placeholder="Informe o nome de usuário"
             />
           </b-form-group>
         </b-col>
       </b-row>
       <b-row>
         <b-col md="6" sm="12">
-          <b-form-group label="RG:" label-for="paciente-rg">
+          <b-form-group label="Email:" label-for="usuario-email">
             <b-form-input
-              id="pacienteRg"
+              id="email"
               type="text"
-              v-model="paciente.rg"
+              v-model="usuario.email"
               required
               :readonly="mode === 'remove'"
-              placeholder="Informe o RG"
+              placeholder="Informe o Email"
             />
+          </b-form-group>
+        </b-col>
+        <b-col md="6" sm="12">
+          <b-form-group label="Nivel de acesso" label-for="nivelacesso">
+            <b-form-select v-model="usuario.nivelDeAcesso" :options="niveisAcesso">
+              <option :value="null" disabled>Selecione um nível de acesso</option>
+            </b-form-select>
           </b-form-group>
         </b-col>
       </b-row>
       <b-row>
         <b-col md="6" sm="12">
-          <b-form-group label="CEP:" label-for="paciente-cep">
+          <b-form-group label="CEP:" label-for="usuario-cep">
             <b-form-input
-              id="pacienteCep"
+              id="usuarioCep"
               type="text"
-              v-model="paciente.endereco.cep"
+              v-model="usuario.endereco.cep"
               @blur.native="buscaCep"
               required
               :readonly="mode === 'remove'"
@@ -58,11 +65,11 @@
           </b-form-group>
         </b-col>
         <b-col md="6" sm="12">
-          <b-form-group label="Logradouro:" label-for="paciente-logradouro">
+          <b-form-group label="Logradouro:" label-for="usuario-logradouro">
             <b-form-input
-              id="paciente-logradouro"
+              id="usuario-logradouro"
               type="text"
-              v-model="paciente.endereco.logradouro"
+              v-model="usuario.endereco.logradouro"
               required
               :readonly="mode === 'remove'"
               placeholder="Informe o Logradouro"
@@ -72,11 +79,11 @@
       </b-row>
       <b-row>
         <b-col md="6" sm="12">
-          <b-form-group label="Bairro:" label-for="paciente-bairro">
+          <b-form-group label="Bairro:" label-for="usuario-bairro">
             <b-form-input
-              id="paciente-bairro"
+              id="medusuarioico-bairro"
               type="text"
-              v-model="paciente.endereco.bairro"
+              v-model="usuario.endereco.bairro"
               required
               :readonly="mode === 'remove'"
               placeholder="Informe o Bairro"
@@ -84,11 +91,11 @@
           </b-form-group>
         </b-col>
         <b-col md="6" sm="12">
-          <b-form-group label="Numero:" label-for="paciente-numero">
+          <b-form-group label="Numero:" label-for="usuario-numero">
             <b-form-input
-              id="paciente-numero"
+              id="usuario-numero"
               type="text"
-              v-model="paciente.endereco.numeroEndereco"
+              v-model="usuario.endereco.numeroEndereco"
               required
               :readonly="mode === 'remove'"
               placeholder="Informe o Numero"
@@ -98,11 +105,11 @@
       </b-row>
       <b-row>
         <b-col md="6" sm="12">
-          <b-form-group label="Cidade:" label-for="paciente-cidade">
+          <b-form-group label="Cidade:" label-for="usuario-cidade">
             <b-form-input
-              id="paciente-cidade"
+              id="usuario-cidade"
               type="text"
-              v-model="paciente.endereco.cidade"
+              v-model="usuario.endereco.cidade"
               required
               :readonly="mode === 'remove'"
               placeholder="Informe a Cidade"
@@ -110,11 +117,11 @@
           </b-form-group>
         </b-col>
         <b-col md="6" sm="12">
-          <b-form-group label="UF:" label-for="paciente-uf">
+          <b-form-group label="UF:" label-for="usuario-uf">
             <b-form-input
-              id="paciente-uf"
+              id="usuario-uf"
               type="text"
-              v-model="paciente.endereco.uf"
+              v-model="usuario.endereco.uf"
               required
               :readonly="mode === 'remove'"
               placeholder="Informe a UF"
@@ -129,17 +136,17 @@
           <b-button class="ml-2" @click="reset">Cancelar</b-button>
         </b-col>
       </b-row>
-      <hr />
-      <div>
-        <Table
-          :items="pacientes"
-          :fields="fields"
-          :current-page="pagina"
-          :perPage="qtnpagina"
-          :loadData="loadPaciente"
-        />
-      </div>
     </b-form>
+    <hr />
+    <div>
+      <Table
+        :items="usuarios"
+        :fields="fields"
+        :current-page="pagina"
+        :perPage="qtnpagina"
+        :loadData="laodUsuario"
+      />
+    </div>
   </div>
 </template>
 
@@ -151,17 +158,21 @@ import Table from "../template/Table";
 import { getCep } from "../../services/cepApi";
 
 export default {
-  name: "Paciente",
+  name: "Usuario",
   components: { Table, PageTitle },
   data() {
     return {
       pagina: 1,
       qtnpagina: 3,
       mode: "save",
-      paciente: {
-        nome: "",
-        cpf: "",
-        rg: "",
+      niveisAcesso: [
+        { value: "ADMINISTRADOR", text: "ADMINISTRADOR" },
+        { value: "CONSELHO", text: "CONSELHO" },
+        { value: "GOVERNO", text: "GOVERNO" },
+        { value: "PROFISSIONAL", text: "PROFISSIONAL" }
+      ],
+      usuario: {
+        nivelDeAcesso: null,
         endereco: {
           logradouro: "",
           bairro: "",
@@ -171,7 +182,7 @@ export default {
           numeroEndereco: ""
         }
       },
-      pacientes: [],
+      usuarios: [],
       fields: [
         {
           key: "id",
@@ -192,50 +203,52 @@ export default {
   },
   methods: {
     loadData() {
-      const url = `${baseApiUrl}/pacientes`;
+      const url = `${baseApiUrl}/usuarios`;
       axios.get(url).then(res => {
-        this.pacientes = res.data;
+        this.usuarios = res.data;
       });
     },
     reset() {
-      (this.mode = "save"), (this.paciente = { endereco: {} }), this.loadData();
+      (this.mode = "save"),
+        (this.usuario = { nivelDeAcesso: null }),
+        this.loadData();
     },
     save() {
-      const method = this.paciente.id ? "put" : "post";
-      const id = this.paciente.id ? `/${this.paciente.id}` : "";
-      axios[method](`${baseApiUrl}/pacientes${id}`, this.paciente)
+      const method = this.usuario.id ? "put" : "post";
+      const id = this.usuario.id ? `/${this.usuario.id}` : "";
+      axios[method](`${baseApiUrl}/usuarios${id}`, this.usuario)
         .then(() => {
           this.$toasted.global.defaultSuccess();
           this.reset();
         })
         .catch(showError);
     },
-    async buscaCep() {
-      const response = await getCep(this.paciente.endereco.cep);
-
-      if (!response) {
-        return;
-      }
-
-      const { street, city, neighborhood, state } = response;
-      this.paciente.endereco.logradouro = street;
-      this.paciente.endereco.bairro = neighborhood;
-      this.paciente.endereco.cidade = city;
-      this.paciente.endereco.uf = state;
-    },
     remove() {
-      const id = this.paciente.id;
-      axios.delete(`${baseApiUrl}/pacientes/${id}`).then(() => {
+      const id = this.usuario.id;
+      axios.delete(`${baseApiUrl}/usuarios/${id}`).then(() => {
         this.$toasted.global.defaultSuccess();
         this.reset();
       });
     },
+    async buscaCep() {
+      const response = await getCep(this.usuario.endereco.cep);
+
+      if(!response){
+          return
+      }
+
+      const { street, city, neighborhood, state } = response;
+      this.usuario.endereco.logradouro = street;
+      this.usuario.endereco.bairro = neighborhood;
+      this.usuario.endereco.cidade = city;
+      this.usuario.endereco.uf = state;
+    },
     linkGen(pageNum) {
       return pageNum === 1 ? "?" : `?page=${pageNum}`;
     },
-    loadPaciente(paciente, mode = "save") {
+    laodUsuario(usuario, mode = "save") {
       this.mode = mode;
-      this.paciente = { ...paciente };
+      this.usuario = { ...usuario };
     }
   },
   mounted() {

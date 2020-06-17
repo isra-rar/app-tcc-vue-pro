@@ -204,7 +204,7 @@ export default {
           id: null
         },
         lotacaoFk: {
-            id: null
+          id: null
         }
       },
       medicos: [],
@@ -259,7 +259,7 @@ export default {
     },
     reset() {
       (this.mode = "save"),
-        (this.medico = { endereco: { }, especialidadeFk: { }, lotacaoFk: { } }),
+        (this.medico = { endereco: {}, especialidadeFk: {}, lotacaoFk: {} }),
         this.loadData();
     },
     save() {
@@ -274,14 +274,16 @@ export default {
     },
     async buscaCep() {
       const response = await getCep(this.medico.endereco.cep);
-      if (response.data.erro) {
+
+      if (!response) {
         return;
       }
-      const { logradouro, bairro, localidade, uf } = response.data;
-      this.medico.endereco.logradouro = logradouro;
-      this.medico.endereco.bairro = bairro;
-      this.medico.endereco.cidade = localidade;
-      this.medico.endereco.uf = uf;
+
+      const { street, city, neighborhood, state } = response;
+      this.medico.endereco.logradouro = street;
+      this.medico.endereco.bairro = neighborhood;
+      this.medico.endereco.cidade = city;
+      this.medico.endereco.uf = state;
     },
     remove() {
       const id = this.medico.id;

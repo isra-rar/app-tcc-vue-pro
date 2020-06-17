@@ -8,6 +8,7 @@ import Instituicao from '@/components/view/Instituicao.vue';
 import Especialidade from '@/components/view/Especialidade.vue';
 import Medico from '@/components/view/Medico.vue'
 import Paciente from '@/components/view/Paciente.vue'
+import Usuario from '@/components/view/Usuario.vue'
 
 import { userKey } from '@/global'
 
@@ -43,6 +44,11 @@ const routes = [{
     name: 'medico',
     path: '/medico',
     component: Medico
+},
+{
+    name: 'usuario',
+    path: '/usuario',
+    component: Usuario
 },
 {
     name: 'paciente',
