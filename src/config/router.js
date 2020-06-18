@@ -6,9 +6,10 @@ import AdminPages from '@/components/admin/AdminPages.vue';
 import Auth from '@/components/auth/Auth.vue'
 import Instituicao from '@/components/view/Instituicao.vue';
 import Especialidade from '@/components/view/Especialidade.vue';
-import Medico from '@/components/view/Medico.vue'
-import Paciente from '@/components/view/Paciente.vue'
-import Usuario from '@/components/view/Usuario.vue'
+import Medico from '@/components/view/Medico.vue';
+import Paciente from '@/components/view/Paciente.vue';
+import Usuario from '@/components/view/Usuario.vue';
+import Atestado from '@/components/view/Atestado.vue';
 
 import { userKey } from '@/global'
 
@@ -56,19 +57,9 @@ const routes = [{
     component: Paciente
 },
 {
-    name: 'cid',
-    path: '/cid',
-    component: AdminPages
-},
-{
-    name: 'receita',
-    path: '/receita',
-    component: Home
-},
-{
     name: 'atestado',
     path: '/atestado',
-    component: AdminPages
+    component: Atestado
 },
 ]
 

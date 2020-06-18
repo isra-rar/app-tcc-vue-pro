@@ -5,7 +5,7 @@
       <input type="hidden" id="user-id" v-model="especialidade.id" />
       <b-row>
         <b-col md="6" sm="12">
-          <b-form-group label="Especialidade:" label-for="especialidade-cnpj">
+          <b-form-group label="Especialidade:" label-for="especialidade">
             <b-form-input
               id="especialidade"
               type="text"
