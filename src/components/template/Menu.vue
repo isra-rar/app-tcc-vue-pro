@@ -33,13 +33,6 @@ export default {
             { text: "Receita" },
             { text: "Atestado" }
           ]
-        },
-        {
-          text: 'Consulta',
-          children: [
-            { text: 'Medicamento' },
-            { text: 'CID' }
-          ]
         }
       ]
     };

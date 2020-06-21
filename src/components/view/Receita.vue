@@ -63,10 +63,8 @@
         :fields="fields"
         small
       >
+
         <template v-slot:cell(actions)="data">
-          <b-button variant="warning" @click="laodPrescricao(data.item)" class="mr-2">
-            <i class="fa fa-pencil"></i>
-          </b-button>
           <b-button variant="danger" @click="removePrescricao(data.item) ">
             <i class="fa fa-trash"></i>
           </b-button>
@@ -139,9 +137,12 @@ export default {
           sortable: true
         },
         {
-          key: "medicamentoFk.produto",
+          key: "medicamentoFk.id",
           label: "Medicamento",
-          sortable: true
+          sortable: true,
+          formatter: (value) => {
+            return this.medicamentos.find(m => m.id == value)['produto']
+          }
         },
         {
           key: "actions",
@@ -151,6 +152,9 @@ export default {
     };
   },
   methods: {
+    getProdutoMedicamento(id) {
+      return this.medicamentos.find(m => m.id == id).produto;
+    },
     adicionarPrescricao() {
       this.receita.prescricoes.push(this.newPrescricao);
       this.newPrescricao = {
@@ -160,7 +164,7 @@ export default {
       };
     },
     downloadFile(idReceita) {
-      const url = `${baseApiUrl}/receitas/imprimirReceita/iihkUn`;
+      const url = `${baseApiUrl}/receitas/imprimirReceitaId/${idReceita}`;
       axios.get(url, { responseType: "arraybuffer" }).then(res => {
         let blob = new Blob([res.data], { type: "application/pdf" });
         let link = document.createElement("a");
@@ -191,16 +195,16 @@ export default {
       });
     },
     reset() {
-      (this.mode = "save"), (this.receita = { paciente: { id: null } });
+      (this.mode = "save"),
+        (this.receita = { paciente: { id: null }, prescricoes: [] });
     },
     save() {
       axios
         .post(`${baseApiUrl}/receitas`, this.receita)
         .then(res => {
           this.$toasted.global.defaultSuccess();
+          this.downloadFile(res.data.id);
           this.reset();
-          // this.downloadFile(res.data.id);
-          this.downloadFile();
         })
         .catch(showError);
     },

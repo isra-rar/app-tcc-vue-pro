@@ -1,6 +1,7 @@
 <template>
   <div class="auth-content" v-show="!isLoginVisible">
     <div class="auth-modal">
+      <img src="@/assets/logo.png" width="80" alt="Logo" />
       <label class="logo-login">Receita Segura</label>
       <hr />
       <div class="auth-title">{{ showSignup ? 'Cadastro' : 'Login' }}</div>
@@ -19,8 +20,8 @@
       <button v-else @click="signin" >Entrar</button>
 
       <a href @click.prevent="showSignup = !showSignup">
-        <span v-if="showSignup">Já tem cadastro? Acesse o Login!</span>
-        <span v-else>Não tem cadastro? Registre-se aqui!</span>
+        <!-- <span v-if="showSignup">Já tem cadastro? Acesse o Login!</span>
+        <span v-else>Não tem cadastro? Registre-se aqui!</span> -->
       </a>
     </div>
   </div>
@@ -102,7 +103,7 @@ export default {
 }
 
 .logo-login {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-family: "Helvetica";
 }
 
