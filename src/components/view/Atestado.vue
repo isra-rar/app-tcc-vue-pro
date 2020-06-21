@@ -116,8 +116,8 @@ export default {
     };
   },
   methods: {
-    downloadFile() {
-      const url = `${baseApiUrl}/atestados/imprimirAtestadoId/1`;
+    downloadFile(idAtestado) {
+      const url = `${baseApiUrl}/atestados/imprimirAtestadoId/${idAtestado}`;
       axios.get(url, { responseType: "arraybuffer" }).then(res => {
         let blob = new Blob([res.data], { type: "application/pdf" });
         let link = document.createElement("a");
@@ -148,15 +148,15 @@ export default {
       });
     },
     reset() {
-      (this.mode = "save"), (this.atestado = { paciente: {}, cidFk: {} });
+      (this.mode = "save"), (this.atestado = { paciente: {id: null}, cidFk: {id: null} });
     },
     save() {
       axios
         .post(`${baseApiUrl}/atestados`, this.atestado)
-        .then(() => {
+        .then(res => {
           this.$toasted.global.defaultSuccess();
           this.reset();
-          this.downloadFile();
+          this.downloadFile(res.data.id);
         })
         .catch(showError);
     },

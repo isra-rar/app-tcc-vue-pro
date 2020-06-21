@@ -147,6 +147,18 @@
             </b-form-select>
           </b-form-group>
         </b-col>
+        <b-col md="6" sm="12">
+          <b-form-group label="CRM:" label-for="crmMedico">
+            <b-form-input
+              id="crmMedico"
+              type="text"
+              v-model="medico.crm"
+              required
+              :readonly="mode === 'remove'"
+              placeholder="Informe o CRM"
+            />
+          </b-form-group>
+        </b-col>
       </b-row>
       <b-row>
         <b-col xs="12">
@@ -217,6 +229,11 @@ export default {
         {
           key: "nome",
           label: "Nome",
+          sortable: true
+        },
+        {
+          key: 'especialidadeFk.nomeEspecialidade',
+          label: 'Especialidade',
           sortable: true
         },
         {

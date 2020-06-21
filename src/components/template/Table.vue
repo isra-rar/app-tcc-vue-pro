@@ -1,6 +1,18 @@
 <template>
   <div class="overflow-auto">
-    <b-table id="my-table" hover striped :items="items" :fields="fields" :per-page="perPage" :current-page="currentPage" small>
+    <b-table
+      id="my-table"
+      hover
+      striped
+      :bordered="true"
+      :no-border-collapse="true"
+      :fixed="true"
+      :items="items"
+      :fields="fields"
+      :per-page="perPage"
+      :current-page="currentPage"
+      small
+    >
       <template v-slot:cell(actions)="data">
         <b-button variant="warning" @click="loadData(data.item)" class="mr-2">
           <i class="fa fa-pencil"></i>
@@ -10,8 +22,8 @@
         </b-button>
       </template>
     </b-table>
-   
-   <hr>
+
+    <hr />
 
     <b-pagination
       v-model="currentPage"
@@ -43,12 +55,11 @@ export default {
 </script>
 
 <style>
-  .page-item.active .page-link {
-    background-color: #28a745 !important;
-    border-color: #28a745;
-  }
-  .page-link {
-    color: #28a745;
-  }
-
+.page-item.active .page-link {
+  background-color: #28a745 !important;
+  border-color: #28a745;
+}
+.page-link {
+  color: #28a745;
+}
 </style>

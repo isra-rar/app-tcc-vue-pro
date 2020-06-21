@@ -10,6 +10,7 @@ import Medico from '@/components/view/Medico.vue';
 import Paciente from '@/components/view/Paciente.vue';
 import Usuario from '@/components/view/Usuario.vue';
 import Atestado from '@/components/view/Atestado.vue';
+import Receita from '@/components/view/Receita.vue'
 
 import { userKey } from '@/global'
 
@@ -61,6 +62,11 @@ const routes = [{
     path: '/atestado',
     component: Atestado
 },
+{
+    name: 'receita',
+    path: '/receita',
+    component: Receita
+}
 ]
 
  const router = new VueRouter({

@@ -1,7 +1,7 @@
 <template>
   <div id="app" :class="{'hide-menu': !isMenuVisible || !user}">
     <Header title="Receita Segura" :hideToggle="!user" :hideUserDropdown="!user" />
-    <Menu v-if="user" />
+    <Menu v-if="user"/>
     <Content />
     <Footer />
   </div>
