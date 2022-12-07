@@ -18,7 +18,7 @@
     "jw-vue-pagination": "^1.0.3",
     "liquor-tree": "^0.2.32",
     "material-icons": "^0.3.1",
-    "qs": "^6.9.4",
+    "qs": "^6.9.7",
     "vue": "^2.6.11",
     "vue-gravatar": "1.2.1",
     "vue-mq": "0.2.1",
